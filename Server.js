@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
 const api = require('./API.js');
 
 /* Apps */
-const wss = process.argv.includes('--use-insecure-ws')
+const wss = config.ws.certPath === undefined || config.ws.keyPath === undefined || process.argv.includes('--use-insecure-ws')
   ? http.createServer()
   : https.createServer({
     cert: fs.readFileSync(config.ws.certPath),
